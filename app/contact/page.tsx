@@ -34,19 +34,25 @@ type FormValues = {
   "h-captcha-response": string;
 };
 
-export type ContactFormProps = {
-  title: string;
-  placeholders: { firstName: string; lastName: string; email: string };
-  selectOptions: {
-    class: { value: string; label: string }[];
-    level: { value: string; label: string }[];
-  };
-  submitButton: string;
-  successMessage: string;
-  errorMessage: string;
-};
+const classTypes = [
+  // { value: "grupales", label: "Cursos Grupales" },
+  // { value: "unt", label: "Cursos para la UNT" },
+  { value: "individual", label: "Individual Classes" },
+];
 
-export default function ContactForm(props: ContactFormProps) {
+const levelTypes = [
+  { value: "1", label: "I never studied" },
+  { value: "2", label: "It's difficult to speak" },
+  { value: "3", label: "I can speak in the present tense" },
+  { value: "4", label: "I can speak in the past tense" },
+  { value: "5", label: "I can speak in the future tense" },
+  {
+    value: "6",
+    label: "I can speak well but I want to express myself better",
+  },
+];
+
+export default function Page() {
   const formSchema = z.object({
     firstName: z.string().min(2, "Please enter your full first name"),
     lastName: z.string().min(2, "Please enter your full last name"),
@@ -90,7 +96,7 @@ export default function ContactForm(props: ContactFormProps) {
 
   return (
     <div className="flex flex-col gap-4! w-full sm:max-w-full md:max-w-2xl lg:max-w-3xl self-center pb-18">
-      <h2>{props.title}</h2>
+      <h2>Send me a message</h2>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
@@ -103,10 +109,7 @@ export default function ContactForm(props: ContactFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
-                    placeholder={props.placeholders.firstName}
-                    {...field}
-                  />
+                  <Input placeholder="First name *" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -119,7 +122,7 @@ export default function ContactForm(props: ContactFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder={props.placeholders.lastName} {...field} />
+                  <Input placeholder="Last name *" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -132,28 +135,12 @@ export default function ContactForm(props: ContactFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder={props.placeholders.email} {...field} />
+                  <Input placeholder="Email address *" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-
-          {/* <FormField
-            name="telephone"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    placeholder={props.placeholders.telephone}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
 
           {/* Select Inputs */}
           <FormField
@@ -168,7 +155,7 @@ export default function ContactForm(props: ContactFormProps) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {props.selectOptions.class.map((opt) => (
+                    {classTypes.map((opt) => (
                       <SelectItem key={opt.value} value={opt.value}>
                         {opt.label}
                       </SelectItem>
@@ -192,7 +179,7 @@ export default function ContactForm(props: ContactFormProps) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {props.selectOptions.level.map((opt) => (
+                    {levelTypes.map((opt) => (
                       <SelectItem key={opt.value} value={opt.value}>
                         {opt.label}
                       </SelectItem>
@@ -237,13 +224,13 @@ export default function ContactForm(props: ContactFormProps) {
           {/* Submit */}
           <div className="flex flex-row items-center gap-4 sm:col-span-2">
             <Button type="submit" disabled={form.formState.isSubmitting}>
-              {props.submitButton}
+              Send
             </Button>
             {isSuccess === true && (
-              <p className="text-sm text-green-600">{props.successMessage}</p>
+              <p className="text-sm text-green-600">Message sent successfully.</p>
             )}
             {isSuccess === false && (
-              <p className="text-sm text-red-600">{props.errorMessage}</p>
+              <p className="text-sm text-red-600">An error occurred. Try again later.</p>
             )}
           </div>
         </form>

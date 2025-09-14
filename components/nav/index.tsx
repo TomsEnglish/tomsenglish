@@ -16,8 +16,8 @@ export default function Nav({ items }: any) {
   return (
     <div className="bg-primary-card w-full flex flex-col items-center">
     <header className="flex container-fluid py-5 justify-between items-center ">
-      <Link href="/" className="font-shantell text-md">
-        English by Tom
+      <Link href="/" className="font-teachers text-2xl">
+        Tom's English
       </Link>
       <nav className="flex flex-row">
         <div className="hidden md:flex">

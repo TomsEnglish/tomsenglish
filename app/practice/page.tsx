@@ -1,4 +1,4 @@
-export default function Community() {
+export default function Practice() {
   return (
     <div className="container-fluid">
       <h2>Coming soon</h2>

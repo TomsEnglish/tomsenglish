@@ -3,7 +3,7 @@ import InstagramIcon from "../assets/Instagram.svg";
 import FacebookIcon from "../assets/Facebook.svg";
 
 export const footerContent = {
-  title: "© 2025 EnglishbyTom.com",
+  title: "© 2025 TomsEnglish.com",
   sections: [
     {
       title: "Classes",
@@ -15,7 +15,7 @@ export const footerContent = {
     {
       title: "Community",
       items: [
-        { text: "Forum", href: "/community" },
+        // { text: "Forum", href: "/community" },
         { text: "Discord", href: "https://discord.gg/wQ63ZPvCTk" },
       ],
     },
@@ -41,6 +41,6 @@ export const footerContent = {
   social: [
     { icon: YoutubeIcon, href: "https://www.youtube.com/@EnglishbyTomYT", alt: "YouTube" },
     // { icon: InstagramIcon, href: "https://www.instagram.com/englishbytom", alt: "Instagram" },
-    { icon: FacebookIcon, href: "https://www.facebook.com/englishbytom", alt: "Facebook" },
+    // { icon: FacebookIcon, href: "https://www.facebook.com/englishbytom", alt: "Facebook" },
   ],
 };

@@ -3,10 +3,10 @@
 @plugin "@tailwindcss/typography";
 
 @font-face {
-  font-family: "Shantell Sans";
+  font-family: "Teachers";
   font-weight: 600;
   font-style: normal;
-  src: url("../../../fonts/ShantellSans.ttf") format("truetype");
+  src: url("../fonts/Teachers.ttf") format("truetype");
 }
 
 /* Typography plugin */
@@ -56,7 +56,7 @@
 }
 
 @theme inline {
-  --font-shantell: "Shantell Sans", sans-serif;
+  --font-teachers: "Teachers", sans-serif;
   --color-yellow: var(--yellow);
   --color-primary-card: var(--primary-card);
   --color-background: var(--background);
