@@ -78,9 +78,9 @@ export default function Page() {
 
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
   const { submit } = useWeb3Forms({
-    access_key: "597c551f-db35-46cf-87ea-621745939468",
+    access_key: "052660b7-76c1-47ac-a9ea-8cfefa140382",
     settings: {
-      from_name: "English by Tom",
+      from_name: "Tom's English Contact Form",
       subject: "New contact form message",
     },
     onSuccess: () => {
