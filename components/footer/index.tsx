@@ -13,8 +13,8 @@ import { Button } from "../ui/button";
 export default function Footer() {
   return (
     <footer className="flex flex-col items-center w-full mt-14 pb-8 text-sm">
-      <div className="container-fluid">
-        <div className="grid grid-cols-2 sm:grid-cols-3  gap-4">
+      <div className="w-fit">
+        <div className="grid grid-cols-2 sm:grid-cols-2  gap-4">
           {footerContent.sections.map((section) => (
             <FooterSection
               key={section.title}
@@ -62,7 +62,7 @@ function FooterSection({
   items: { text: string; href: string }[];
 }) {
   return (
-    <div className="prose w-full flex flex-col">
+    <div className="prose w-full flex flex-col px-8">
       <h4>{title}</h4>
       <ul className="flex flex-col list-none p-0!">
         {items.map((item) => (

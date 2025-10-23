@@ -2,7 +2,7 @@ const style = "cursor-pointer py-2 px-4 font-medium text-sm rounded-md hover:bg-
 
 export const items = [
   <a href="/" className={style}>Home</a>,
-  // <a href="/exercises" className={style}>Exercises</a>,
   <a href="/classes/individual" className={style}>Classes</a>,
+  <a href="/about" className={style}>About Me</a>,
   // <a href="/blog" className={style}>Blog</a>,
 ];

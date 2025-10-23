@@ -26,13 +26,13 @@ export const footerContent = {
     //     // { text: "Help Center", href: "/help" },
     //   ],
     // },
-    {
-      title: "More",
-      items: [
-        { text: "About", href: "/about" },
-        // { text: "Contact", href: "/contact" },
-      ],
-    },
+    // {
+    //   title: "More",
+    //   items: [
+    //     { text: "About", href: "/about" },
+    //     { text: "Contact", href: "/contact" },
+    //   ],
+    // },
   ],
   // newsletter: { title: "Get the newsletter" },
   links: [
