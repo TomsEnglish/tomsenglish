@@ -30,7 +30,7 @@ export const footerContent = {
       title: "More",
       items: [
         { text: "About", href: "/about" },
-        { text: "Contact", href: "/contact" },
+        // { text: "Contact", href: "/contact" },
       ],
     },
   ],

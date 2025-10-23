@@ -25,7 +25,7 @@ export default function Banner({ title, subtitle, button }: BannerContent) {
           <h1 className="mb-0!">{title}</h1>
           <p>{subtitle}</p>
         </div>
-        {button}
+        {/* {button} */}
       </div>
     </div>
   );

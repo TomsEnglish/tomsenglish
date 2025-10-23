@@ -28,36 +28,23 @@ type FormValues = {
   firstName: string;
   lastName: string;
   email: string;
-  class: string;
   level: string;
   message: string;
   "h-captcha-response": string;
 };
 
-const classTypes = [
-  // { value: "grupales", label: "Cursos Grupales" },
-  // { value: "unt", label: "Cursos para la UNT" },
-  { value: "individual", label: "Individual Classes" },
-];
-
 const levelTypes = [
-  { value: "1", label: "I never studied" },
-  { value: "2", label: "It's difficult to speak" },
-  { value: "3", label: "I can speak in the present tense" },
-  { value: "4", label: "I can speak in the past tense" },
-  { value: "5", label: "I can speak in the future tense" },
-  {
-    value: "6",
-    label: "I can speak well but I want to express myself better",
-  },
+  { value: "1", label: "I have never studied English" },
+  { value: "2", label: "I have a beginner level of English" },
+  { value: "3", label: "I have an intermediate level of English" },
+  { value: "4", label: "I have an advanced level of English" },
 ];
 
-export default function Page() {
+export default function ClassForm() {
   const formSchema = z.object({
     firstName: z.string().min(2, "Please enter your full first name"),
     lastName: z.string().min(2, "Please enter your full last name"),
     email: z.email(),
-    class: z.string().nonempty("Please select the type of English class"),
     level: z.string().nonempty("Please select your current English level"),
     message: z.string().max(600),
     "h-captcha-response": z.string().nonempty("Please complete the CAPTCHA"),
@@ -69,7 +56,6 @@ export default function Page() {
       firstName: "",
       lastName: "",
       email: "",
-      class: "",
       level: "",
       message: "",
       "h-captcha-response": "",
@@ -95,8 +81,8 @@ export default function Page() {
     form.setValue("h-captcha-response", token, { shouldValidate: true });
 
   return (
-    <div className="flex flex-col gap-4! w-full sm:max-w-full md:max-w-2xl lg:max-w-3xl self-center pb-18">
-      <h2>Send me a message</h2>
+    <>
+      <h3>Registration</h3>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
@@ -143,29 +129,6 @@ export default function Page() {
           />
 
           {/* Select Inputs */}
-          <FormField
-            name="class"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl className="w-full!">
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select class *" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {classTypes.map((opt) => (
-                      <SelectItem key={opt.value} value={opt.value}>
-                        {opt.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
 
           <FormField
             name="level"
@@ -198,7 +161,7 @@ export default function Page() {
             render={({ field }) => (
               <FormItem className="sm:col-span-2">
                 <FormControl>
-                  <Textarea placeholder="Message" {...field} />
+                  <Textarea placeholder="Message (optional)" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -223,8 +186,13 @@ export default function Page() {
 
           {/* Submit */}
           <div className="flex flex-row items-center gap-4 sm:col-span-2">
-            <Button type="submit" disabled={form.formState.isSubmitting}>
-              Send
+         
+            <Button
+              variant="yellow"
+              className="w-fit cursor-pointer"
+              type="submit" disabled={form.formState.isSubmitting}
+            >
+Register
             </Button>
             {isSuccess === true && (
               <p className="text-sm text-green-600">Message sent successfully.</p>
@@ -235,6 +203,6 @@ export default function Page() {
           </div>
         </form>
       </Form>
-    </div>
+    </>
   );
 }

@@ -32,6 +32,8 @@
   }
 }
 
+html { scroll-behavior: smooth; }
+
 .container-screen {
   @apply w-screen! max-w-full items-center
 }
