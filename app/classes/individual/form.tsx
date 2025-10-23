@@ -21,40 +21,33 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import useWeb3Forms from "@web3forms/react";
 import { useState } from "react";
 
-type FormValues = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  level: string;
-  message: string;
-  "h-captcha-response": string;
-};
+const formSchema = z.object({
+  first_name: z.string().min(2, "Please enter your full first name"),
+  last_name: z.string().min(2, "Please enter your full last name"),
+  email: z.email("Please enter a valid email"),
+  level: z.string().nonempty("Please select your current English level"),
+  message: z.string().max(600, "Message too long").optional(),
+  "h-captcha-response": z.string().nonempty("Please complete the CAPTCHA"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 const levelTypes = [
-  { value: "1", label: "I have never studied English" },
-  { value: "2", label: "I have a beginner level of English" },
-  { value: "3", label: "I have an intermediate level of English" },
-  { value: "4", label: "I have an advanced level of English" },
+  { value: "0", label: "I have never studied English" },
+  { value: "1", label: "I have a beginner level of English" },
+  { value: "2", label: "I have an intermediate level of English" },
+  { value: "3", label: "I have an advanced level of English" },
 ];
 
 export default function ClassForm() {
-  const formSchema = z.object({
-    firstName: z.string().min(2, "Please enter your full first name"),
-    lastName: z.string().min(2, "Please enter your full last name"),
-    email: z.email(),
-    level: z.string().nonempty("Please select your current English level"),
-    message: z.string().max(600),
-    "h-captcha-response": z.string().nonempty("Please complete the CAPTCHA"),
-  });
-
+  const [submitted, setSubmitted] = useState<null | boolean>(null);
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       level: "",
       message: "",
@@ -62,36 +55,44 @@ export default function ClassForm() {
     },
   });
 
-  const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
-  const { submit } = useWeb3Forms({
-    access_key: "052660b7-76c1-47ac-a9ea-8cfefa140382",
-    settings: {
-      from_name: "Tom's English Contact Form",
-      subject: "New contact form message",
-    },
-    onSuccess: () => {
-      setIsSuccess(true);
-      form.reset();
-    },
-    onError: () => setIsSuccess(false),
-  });
+  const handleSubmit = async (data: FormValues) => {
+    setSubmitted(null);
 
-  const handleSubmit = (data: FormValues) => submit(data);
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
+
+    try {
+      const res = await fetch(`${baseUrl}/api/apply`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        form.reset();
+      } else {
+        setSubmitted(false);
+      }
+    } catch (err) {
+      console.error(err);
+      setSubmitted(false);
+    }
+  };
+
   const onHCaptchaChange = (token: string) =>
     form.setValue("h-captcha-response", token, { shouldValidate: true });
 
   return (
     <div className="mt-6 flex flex-col px-[10px] md:border sm:p-4 gap-4">
-      <h3 className="mt-2! mb-2!">Registration Form</h3>
+      <h3 className="mt-2! mb-2 text-lg font-semibold">Registration Form</h3>
       <Form {...form}>
-        
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
           className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full"
         >
           {/* Text Inputs */}
           <FormField
-            name="firstName"
+            name="first_name"
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -104,7 +105,7 @@ export default function ClassForm() {
           />
 
           <FormField
-            name="lastName"
+            name="last_name"
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -129,15 +130,14 @@ export default function ClassForm() {
             )}
           />
 
-          {/* Select Inputs */}
-
+          {/* Select Input */}
           <FormField
             name="level"
             control={form.control}
             render={({ field }) => (
               <FormItem>
                 <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl className="w-full!">
+                  <FormControl className="w-full">
                     <SelectTrigger>
                       <SelectValue placeholder="Select level *" />
                     </SelectTrigger>
@@ -169,7 +169,7 @@ export default function ClassForm() {
             )}
           />
 
-          {/* Captcha */}
+          {/* CAPTCHA */}
           <FormField
             name="h-captcha-response"
             control={form.control}
@@ -188,20 +188,20 @@ export default function ClassForm() {
           {/* Submit */}
           <div className="flex flex-row items-center gap-4 sm:col-span-2">
             <Button
-              className="cursor-pointer"
               type="submit"
               disabled={form.formState.isSubmitting}
+              className="cursor-pointer"
             >
-              Submit
+              {form.formState.isSubmitting ? "Submitting..." : "Submit"}
             </Button>
-            {isSuccess === true && (
+            {submitted === true && (
               <p className="text-sm text-green-600">
-                Message sent successfully.
+                Application sent successfully!
               </p>
             )}
-            {isSuccess === false && (
+            {submitted === false && (
               <p className="text-sm text-red-600">
-                An error occurred. Try again later.
+                Something went wrong. Try again later.
               </p>
             )}
           </div>
