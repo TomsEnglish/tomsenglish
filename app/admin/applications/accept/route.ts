@@ -37,23 +37,31 @@ export async function POST(req: Request) {
   const { first_name, email } = applicant;
   const meetingLink = `https://toms-english.neetocal.com/english-interview?name=${first_name}&email=${email}`;
 
+  // Send email
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: "Tom's English <noreply@updates.tomsenglish.com>",
       to: email,
       subject: "English class interview with Tom",
       html: `
         <p>Hi ${first_name},</p>
-        <p>Thanks for registering for the English class on my website.</p>
-        <p>I would like to have a short, 15-minute meeting with you to talk about your goals and to see if my classes would be the right fit for you.</p>
-        <p>Please use the link below to schedule your first meeting with me:</p>
-        <p><a href="${meetingLink}" target="_blank">${meetingLink}</a></p>
-        <p>Looking forward to meeting you soon,</p>
-        <p>Tom</p>
+        <p>Thank you for taking the time to register for classes. I would like to have a short, 15-minute meeting with you to talk about your goals and to see if my classes would be the right fit for you.</p>
+        <p>Please use the link below to schedule your first meeting with me:<br/>
+        <a href="${meetingLink}" target="_blank">${meetingLink}</a></p>
+        <p>Looking forward to meeting you soon,<p/>
+        <p><b>Tom Frame</b><br/>
+        Tom's English<br/>
+        <a href="mailto:tom@tomsenglish.com">tom@tomsenglish.com</a><br/>
+        </p>
       `,
     });
+    if (result.error) {
+      console.error("Resend API returned error:", result.error);
+    } else {
+      console.log("Email sent successfully:", result.data);
+    }
   } catch (err) {
-    console.error("Resend error:", err);
+    console.error("Resend email error:", err);
   }
 
   return NextResponse.json({ success: true });

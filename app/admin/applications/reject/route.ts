@@ -37,14 +37,16 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: "Tom's English <noreply@updates.tomsenglish.com>",
       to: email,
-      subject: "Your Application to Tom's English",
+      subject: "Your English class registration",
       html: `
         <p>Hi ${first_name},</p>
-        <p>Thank you for your interest in joining my English program.</p>
+        <p>Thank you for your interest in taking classes with me.</p>
         <p>Unfortunately, I'm not able to accept new students at the moment.</p>
-        <p>I really appreciate the time you took to apply — you're welcome to reapply in the future!</p>
         <p>Best wishes,</p>
-        <p>Tom</p>
+        <p><b>Tom Frame</b><br/>
+        Tom's English<br/>
+        <a href="mailto:tom@tomsenglish.com">tom@tomsenglish.com</a><br/>
+        </p>
       `,
     });
   } catch (err) {

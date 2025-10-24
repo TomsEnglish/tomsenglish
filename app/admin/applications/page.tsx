@@ -33,38 +33,31 @@ export default function ApplicationsPage() {
     fetchApps();
   }, []);
 
-  const handleApprove = async (id: string) => {
-    setLoading(true);
-    const { error } = await supabase
-      .from("applications")
-      .update({ status: "approved" })
-      .eq("id", id);
-    if (!error) {
-      setApplications((prev) =>
-        prev.map((a) => (a.id === id ? { ...a, status: "approved" } : a))
-      );
-    }
-    setLoading(false);
-  };
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
 
-  const handleReject = async (id: string) => {
+  const handleAction = async (id: string, action: "accept" | "reject") => {
     setLoading(true);
-    const { error } = await supabase
-      .from("applications")
-      .update({ status: "rejected" })
-      .eq("id", id);
-    if (!error) {
-      setApplications((prev) =>
-        prev.map((a) => (a.id === id ? { ...a, status: "rejected" } : a))
-      );
+    const endpoint = `${baseUrl}/admin/applications/${action}`;
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+
+    if (res.ok) {
+      alert(`Application ${action}ed and email sent.`);
+      window.location.reload();
+    } else {
+      const { error } = await res.json();
+      alert(`Error: ${error}`);
     }
+
     setLoading(false);
   };
 
   return (
-    <>
     <div className="container-fluid gap-4 flex flex-col items-center">
-      <h2 >Student Applications</h2>
+      <h2>Student Applications</h2>
 
       {applications.length === 0 ? (
         <p className="text-gray-500">No applications yet.</p>
@@ -99,7 +92,7 @@ export default function ApplicationsPage() {
                       Status:{" "}
                       <span
                         className={`font-medium ${
-                          app.status === "approved"
+                          app.status === "accepted"
                             ? "text-green-600"
                             : app.status === "rejected"
                             ? "text-red-600"
@@ -113,16 +106,17 @@ export default function ApplicationsPage() {
                   {app.status === "pending" && (
                     <div className="flex flex-row gap-2 mt-2">
                       <Button
-                        onClick={() => handleApprove(app.id)}
+                        onClick={() => handleAction(app.id, "accept")}
+                        className="bg-green-500 hover:bg-green-600"
                         disabled={loading}
-                        variant="default"
                       >
-                        Approve
+                        Accept
                       </Button>
+
                       <Button
-                        onClick={() => handleReject(app.id)}
+                        onClick={() => handleAction(app.id, "reject")}
+                        className="bg-red-500 hover:bg-red-600"
                         disabled={loading}
-                        variant="destructive"
                       >
                         Reject
                       </Button>
@@ -134,7 +128,6 @@ export default function ApplicationsPage() {
           ))}
         </>
       )}
-      </div>
-    </>
+    </div>
   );
 }
