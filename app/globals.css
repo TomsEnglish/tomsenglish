@@ -18,11 +18,13 @@
   }
 }
 
-body {
+/* body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
+  display: flex;
+  flex-direction: column;
+} */
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
@@ -80,6 +82,14 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
 }
 
 a {
@@ -828,6 +838,7 @@ section,
   line-height: 1.6;
   margin-bottom: 2rem;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
+  padding-right: 48px !important;
 }
 
 .courses-hero .hero-stats {

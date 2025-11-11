@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import { Roboto, Raleway, Ubuntu } from "next/font/google";
 import { Header } from "@/components/header";
-import 'bootstrap/dist/css/bootstrap.css';
+import { Footer } from "@/components/footer";
+import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
-import BootstrapClient from '@/client/BootstrapClient.js';
+import BootstrapClient from "@/client/BootstrapClient.js";
 
-  
 const ubuntu = Ubuntu({
   variable: "--font-nav",
   subsets: ["latin"],
-  weight: "400"
+  weight: "400",
 });
 
 const roboto = Roboto({
@@ -41,9 +41,19 @@ export default function RootLayout({
       <body
         className={`${ubuntu.variable} ${roboto.variable} ${raleway.variable} antialiased`}
       >
-        <Header />
-        {children}
         <BootstrapClient />
+        <Header />
+        <main className="main">{children}</main>
+        <Footer />
+
+        {/* Scroll Top */}
+        <a
+          href="#"
+          id="scroll-top"
+          className="scroll-top d-flex align-items-center justify-content-center"
+        >
+          <i className="bi bi-arrow-up-short"></i>
+        </a>
       </body>
     </html>
   );
