@@ -1,14 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto, Raleway, Ubuntu } from "next/font/google";
+import { Header } from "@/components/header";
+import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
+import BootstrapClient from '@/client/BootstrapClient.js';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+  
+const ubuntu = Ubuntu({
+  variable: "--font-nav",
+  subsets: ["latin"],
+  weight: "400"
+});
+
+const roboto = Roboto({
+  variable: "--font-default",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const raleway = Raleway({
+  variable: "--font-heading",
   subsets: ["latin"],
 });
 
@@ -24,10 +35,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script src="main.js"></script>
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${ubuntu.variable} ${roboto.variable} ${raleway.variable} antialiased`}
       >
+        <Header />
         {children}
+        <BootstrapClient />
       </body>
     </html>
   );
