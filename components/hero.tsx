@@ -1,3 +1,8 @@
+"use client";
+
+import CountUp from "react-countup";
+import Link from "next/link";
+
 export const Hero = () => {
   return (
     <section
@@ -11,15 +16,29 @@ export const Hero = () => {
               <div className="hero-text">
                 <h1>Hi, I'm Tom</h1>
                 <p>
-                  Welcome to my page! This page is all about helping you grow your English
-                  skills. Discover free resources, practical tips, and personalized
-                  classes designed to make learning simple and enjoyable.
+                  Welcome to my page! This page is all about helping you grow
+                  your English skills. Discover free resources, practical tips,
+                  and personalized classes designed to make learning simple and
+                  enjoyable.
                 </p>
 
+                {/* <div className="hero-stats">
+                  <div className="stat-item">
+                    <h3 className="number purecounter">
+                      <CountUp end={1650} duration={1.5} />+
+                    </h3>
+
+                    <span className="label">Classes given</span>
+                  </div>
+                </div> */}
+
                 <div className="hero-buttons">
-                  <a href="#courses" className="btn btn-primary">
-                    Browse Courses
-                  </a>
+                  <Link href="" className="btn btn-primary">
+                  Browse Courses
+                  </Link>
+                  {/* <a href="#courses" className="btn btn-primary">
+                    
+                  </a> */}
                   {/* <a href="#about" className="btn btn-outline">
                     Learn More
                   </a> */}
@@ -63,7 +82,7 @@ export const Hero = () => {
                     </div>
                     <div className="card-content">
                       <h6>General English</h6>
-                      <span>2,450 Students</span>
+                      {/* <span>Master everyday English</span> */}
                     </div>
                   </div>
 
@@ -77,7 +96,7 @@ export const Hero = () => {
                     </div>
                     <div className="card-content">
                       <h6>Business English</h6>
-                      <span>1,890 Students</span>
+                      {/* <span>1,890 Students</span> */}
                     </div>
                   </div>
 
@@ -91,7 +110,7 @@ export const Hero = () => {
                     </div>
                     <div className="card-content">
                       <h6>IELTS Preparation</h6>
-                      <span>3,200 Students</span>
+                      {/* <span>3,200 Students</span> */}
                     </div>
                   </div>
                 </div>
