@@ -815,7 +815,7 @@ section,
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 120px 0 60px;
+  padding: 60px 0 60px;
 }
 
 .courses-hero .hero-content {
@@ -1955,7 +1955,7 @@ section,
 }
 
 .testimonials .critic-reviews .critic-review:hover {
-  transform: translateY(-10px);
+  /* transform: translateY(-10px); */
 }
 
 .testimonials .testimonials-container {
@@ -8023,7 +8023,7 @@ section,
 --------------------------------------------------------------*/
 
 
-.contact .map-wrapper {
+.map-wrapper {
   height: 300px;
   width: 100%;
   border-radius: 16px;
@@ -8031,14 +8031,14 @@ section,
 }
 
 @media (min-width: 992px) {
-  .contact .map-wrapper {
+  .map-wrapper {
     height: 100%;
     position: sticky;
     top: 100px;
   }
 }
 
-.contact .contact-content {
+.contact-content {
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -8048,35 +8048,35 @@ section,
 }
 
 @media (max-width: 575px) {
- .contact .contact-content {
+ .contact-content {
     width: 100%;
   }
 }
 
 @media (min-width:992) {
-  .contact .contact-content {
+  .contact-content {
     width: 80%;
   }
 }
 
-.contact .contact-cards-container {
+.contact-cards-container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 15px;
 }
 
-.contact .contact-cards-container {
+.contact-cards-container {
     grid-template-columns: 1fr;
   }
 
 @media (min-width: 992px) {
-  .contact .contact-cards-container {
+  .contact-cards-container {
     grid-template-columns: repeat(2, 1fr);
 
   }
 }
 
-.contact .contact-card {
+.contact-card {
   background-color: var(--surface-color);
   padding: 20px;
   border-radius: 12px;
@@ -8088,17 +8088,17 @@ section,
   text-align: left;
 }
 
-.contact .contact-card:hover {
+.contact-card:hover {
   /* transform: translateY(-5px); */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   cursor: pointer;
 }
 
-.contact .contact-card:hover .contact-text h4 {
+.contact-card:hover .contact-text h4 {
  color: var(--accent-color);
 }
 
-.contact .contact-card .icon-box {
+.contact-card .icon-box {
   width: 50px;
   height: 50px;
   flex-shrink: 0;
@@ -8109,19 +8109,19 @@ section,
   align-items: center;
 }
 
-.contact .contact-card .icon-box i {
+.contact-card .icon-box i {
   font-size: 22px;
   color: var(--accent-color);
 }
 
-.contact .contact-card .contact-text h4 {
+.contact-card .contact-text h4 {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 8px;
   color: var(--heading-color);
 }
 
-.contact .contact-card .contact-text p {
+.contact-card .contact-text p {
   font-size: 14px;
   line-height: 1.5;
   color: var(--default-color);

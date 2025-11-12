@@ -1,12 +1,13 @@
-import Image from "next/image";
-import { Hero } from "@/components/hero";
-import { UpcomingEvents } from "@/components/upcoming-events";
+import { Hero } from "./hero";
+import { UpcomingEvents } from "./upcoming-events";
+import { Testimonials } from "./testimonials";
 
 export default function Home() {
   return (
     <div>
       <Hero />
       <UpcomingEvents />
+      <Testimonials />
     </div>
   );
 }

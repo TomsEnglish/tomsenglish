@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Roboto, Raleway, Ubuntu } from "next/font/google";
+import { UseAOS } from "@/hooks/UseAOS";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ScrollTop } from "@/components/scroll-top";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
@@ -46,14 +48,11 @@ export default function RootLayout({
         <main className="main">{children}</main>
         <Footer />
 
+        {/* Scroll Animation Effect */}
+        <UseAOS />
+
         {/* Scroll Top */}
-        <a
-          href="#"
-          id="scroll-top"
-          className="scroll-top d-flex align-items-center justify-content-center"
-        >
-          <i className="bi bi-arrow-up-short"></i>
-        </a>
+        <ScrollTop />
       </body>
     </html>
   );
