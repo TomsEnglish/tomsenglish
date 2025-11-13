@@ -36,28 +36,23 @@ export const Hero = () => {
                   <Link href="" className="btn btn-primary">
                   Browse Courses
                   </Link>
-                  {/* <a href="#courses" className="btn btn-primary">
-                    
-                  </a> */}
-                  {/* <a href="#about" className="btn btn-outline">
-                    Learn More
-                  </a> */}
+
                 </div>
 
-                <div className="hero-features">
+                {/* <div className="hero-features">
                   <div className="feature">
                     <i className="bi bi-shield-check"></i>
                     <span>Certified Teacher</span>
                   </div>
-                  {/* <div className="feature">
+                  <div className="feature">
                     <i className="bi bi-clock"></i>
                     <span>Lifetime Access</span>
                   </div>
                   <div className="feature">
                     <i className="bi bi-people"></i>
                     <span>Expert Instructors</span>
-                  </div> */}
-                </div>
+                  </div>
+                </div> */}
               </div>
             </div>
 
@@ -82,7 +77,7 @@ export const Hero = () => {
                     </div>
                     <div className="card-content">
                       <h6>General English</h6>
-                      {/* <span>Master everyday English</span> */}
+          
                     </div>
                   </div>
 
@@ -96,7 +91,7 @@ export const Hero = () => {
                     </div>
                     <div className="card-content">
                       <h6>Business English</h6>
-                      {/* <span>1,890 Students</span> */}
+             
                     </div>
                   </div>
 
@@ -110,7 +105,7 @@ export const Hero = () => {
                     </div>
                     <div className="card-content">
                       <h6>IELTS Preparation</h6>
-                      {/* <span>3,200 Students</span> */}
+          
                     </div>
                   </div>
                 </div>

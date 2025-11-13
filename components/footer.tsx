@@ -34,14 +34,17 @@ export const Footer = () => {
             </div>
           </div>
 
+          
+
+          <div className="col-lg-2 col-6" />
+
+
+          <div className="col-lg-3 col-md-12" />
           <div className="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
               <li>
-                <Link href="">Home</Link>
-              </li>
-              <li>
-                <Link href="">About us</Link>
+                <Link href="">About</Link>
               </li>
               <li>
                 <Link href="">Terms of service</Link>
@@ -49,39 +52,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div className="col-lg-2 col-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li>
-                <a href="#">Web Design</a>
-              </li>
-              <li>
-                <a href="#">Web Development</a>
-              </li>
-              <li>
-                <a href="#">Product Management</a>
-              </li>
-              <li>
-                <a href="#">Marketing</a>
-              </li>
-              <li>
-                <a href="#">Graphic Design</a>
-              </li>
-            </ul>
-          </div>
 
-          <div className="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-            <h4>Contact Us</h4>
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p>United States</p>
-            <p className="mt-4">
-              <strong>Phone:</strong> <span>+1 5589 55488 55</span>
-            </p>
-            <p>
-              <strong>Email:</strong> <span>info@example.com</span>
-            </p>
-          </div>
         </div>
       </div>
     </footer>

@@ -86,7 +86,7 @@
 body {
   color: var(--default-color);
   background-color: var(--background-color);
-  font-family: var(--default-font);
+  font-family: var(--font-default);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -115,7 +115,7 @@ h4,
 h5,
 h6 {
   color: var(--heading-color);
-  font-family: var(--heading-font);
+  font-family: var(--font-heading);
 }
 
 /* PHP Email Form Messages
@@ -274,7 +274,7 @@ h6 {
     color: var(--nav-color);
     font-size: 15px;
     padding: 0 2px;
-    font-family: var(--nav-font);
+    font-family: var(--font-nav);
     font-weight: 400;
     display: flex;
     align-items: center;
@@ -411,7 +411,7 @@ h6 {
   .navmenu a:focus {
     color: var(--nav-dropdown-color);
     padding: 10px 20px;
-    font-family: var(--nav-font);
+    font-family: var(--font-nav);
     font-size: 17px;
     font-weight: 500;
     display: flex;
@@ -534,12 +534,12 @@ h6 {
   font-size: 30px;
   font-weight: 700;
   letter-spacing: 1px;
-  font-family: var(--heading-font);
+  font-family: var(--font-heading);
 }
 
 .footer .footer-about p {
   font-size: 14px;
-  font-family: var(--heading-font);
+  font-family: var(--font-heading);
 }
 
 .footer .social-links a {
@@ -6360,7 +6360,7 @@ section,
 }
 
 .pricing .pricing-item:hover {
-  transform: translateY(-5px);
+  /* transform: translateY(-5px); */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
@@ -6686,7 +6686,7 @@ section,
 
 .blog-hero .blog-item .post-title {
   margin: 0;
-  font-family: var(--heading-font);
+  font-family: var(--font-heading);
 }
 
 .blog-hero .blog-item .post-title a {
@@ -7660,7 +7660,7 @@ section,
   color: var(--heading-color);
   font-size: 32px;
   font-weight: 700;
-  font-family: var(--heading-font);
+  font-family: var(--font-heading);
   margin: 0;
 }
 
