@@ -22,7 +22,7 @@ export default function IndividualClass() {
             my classes are customized to help you reach your goals.
           </p>
           <p>
-            <b className="text-xl">$ 20 USD </b>per hour
+            <b className="text-xl">$ 15 USD </b>per hour
           </p>
           <DetailCards />
           <ClassForm />

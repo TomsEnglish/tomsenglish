@@ -35,25 +35,42 @@ export default function ApplicationsPage() {
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || window.location.origin;
 
-  const handleAction = async (id: string, action: "accept" | "reject") => {
+  async function handleAction(id: string, action: string) {
     setLoading(true);
-    const endpoint = `${baseUrl}/admin/applications/${action}`;
+    const endpoint = `${baseUrl}/admin/applications/${id}/action`;
     const res = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
+      body: JSON.stringify({ action }),
     });
 
     if (res.ok) {
-      alert(`Application ${action}ed and email sent.`);
-      window.location.reload();
+      // Refresh the list or optimistically update state
     } else {
-      const { error } = await res.json();
-      alert(`Error: ${error}`);
+      console.error(await res.json());
     }
-
     setLoading(false);
-  };
+  }
+
+  // const handleAction = async (id: string, action: "accept-trial" | "reject") => {
+  //   setLoading(true);
+  //   const endpoint = `${baseUrl}/admin/applications/${action}`;
+  //   const res = await fetch(endpoint, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ id }),
+  //   });
+
+  //   if (res.ok) {
+  //     alert(`Application ${action}ed and email sent.`);
+  //     window.location.reload();
+  //   } else {
+  //     const { error } = await res.json();
+  //     alert(`Error: ${error}`);
+  //   }
+
+  //   setLoading(false);
+  // };
 
   return (
     <div className="container-fluid gap-4 flex flex-col items-center">
@@ -103,10 +120,61 @@ export default function ApplicationsPage() {
                       </span>
                     </p>
                   </div>
+
                   {app.status === "pending" && (
+                    <>
+                      <Button
+                        onClick={() =>
+                          handleAction(app.id, "trial_accepted")
+                        }
+                        disabled={loading}
+                      >
+                        Accept for Trial
+                      </Button>
+                      <Button
+                        onClick={() =>
+                          handleAction(app.id, "trial_rejected")
+                        }
+                        disabled={loading}
+                      >
+                        Reject
+                      </Button>
+                    </>
+                  )}
+
+                  {app.status === "trial_accepted" && (
+                    <>
+                      <Button
+                        onClick={() =>
+                          handleAction(app.id, "student_accepted")
+                        }
+                        disabled={loading}
+                      >
+                        Accept as Student
+                      </Button>
+                      <Button
+                        onClick={() =>
+                          handleAction(app.id, "student_rejected")
+                        }
+                        disabled={loading}
+                      >
+                        Reject After Trial
+                      </Button>
+                    </>
+                  )}
+
+                  {app.status.startsWith("student") && (
+                    <p>
+                      {app.status === "student_accepted"
+                        ? "✅ Full Student"
+                        : "❌ Rejected After Trial"}
+                    </p>
+                  )}
+
+                  {/* {app.status === "pending" && (
                     <div className="flex flex-row gap-2 mt-2">
                       <Button
-                        onClick={() => handleAction(app.id, "accept")}
+                        onClick={() => handleAction(app.id, "accept-trial")}
                         className="bg-green-500 hover:bg-green-600"
                         disabled={loading}
                       >
@@ -121,7 +189,7 @@ export default function ApplicationsPage() {
                         Reject
                       </Button>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
