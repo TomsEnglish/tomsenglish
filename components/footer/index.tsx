@@ -13,24 +13,24 @@ import { Button } from "../ui/button";
 export default function Footer() {
   return (
     <footer className="flex flex-col items-center w-full mt-14 pb-8 text-sm">
-      <div className="w-fit">
-        <div className="grid grid-cols-2 sm:grid-cols-2  gap-4">
-          {footerContent.sections.map((section) => (
+      {/* <div className="w-fit">
+        <div className="grid grid-cols-2 sm:grid-cols-2  gap-4"> */}
+          {/* {footerContent.sections.map((section) => (
             <FooterSection
               key={section.title}
               title={section.title}
               items={section.items}
             />
-          ))}
+          ))} */}
 
           {/* <div className="prose w-full flex flex-col">
             <h4>{footerContent.newsletter.title}</h4>
             <NewsletterForm />
           </div> */}
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
 
-      <Separator className="my-8 w-full" />
+      {/* <Separator className="my-8 w-full" /> */}
 
       <span>{footerContent.title}</span>
 

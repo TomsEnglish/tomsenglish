@@ -12,13 +12,13 @@ export const footerContent = {
         // { text: "Group classes", href: "/classes/group" },
       ],
     },
-    {
-      title: "Community",
-      items: [
-        // { text: "Forum", href: "/community" },
-        { text: "Discord", href: "https://discord.gg/wQ63ZPvCTk" },
-      ],
-    },
+    // {
+    //   title: "Community",
+    //   items: [
+    //     // { text: "Forum", href: "/community" },
+    //     { text: "Discord", href: "https://discord.gg/wQ63ZPvCTk" },
+    //   ],
+    // },
     // {
     //   title: "Resources",
     //   items: [
