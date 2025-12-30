@@ -2,15 +2,17 @@
 
 import { usePathname } from "next/navigation";
 
-export const PageTitle = () => {
+export const PageTitle = ({ forceTitle }: { forceTitle?: string }) => {
   const pathname = usePathname();
 
-  const title = pathname
-    .replace(/^\/+/, "") // remove leading slash
-    .replace(/-+/g, " ") // dashes → spaces
-    .replace(/\b[a-z]/g, (c) => c.toUpperCase());
+  const title =
+    forceTitle ??
+    pathname
+      .replace(/^\/+/, "")
+      .replace(/-+/g, " ")
+      .replace(/\b[a-z]/g, (c) => c.toUpperCase());
 
-  if (pathname != "/")
+  if (pathname !== "/" || forceTitle)
     return (
       <div className="page-title light-background">
         <div className="container d-lg-flex justify-content-between align-items-center">

@@ -1,7 +1,11 @@
 import { CourseTemplate } from "@/components/course-template-page";
+import { PageTitle } from "@/components/page-title";
 
 export default function InternationalExamPrep() {
   return (
+    <>
+    <PageTitle />
+    
     <CourseTemplate
       title="English for International Exams"
       subtitle="Personalized exam-focused classes to help you reach your target score with confidence and clarity."
@@ -37,5 +41,6 @@ export default function InternationalExamPrep() {
         "Detailed feedback and score-oriented guidance",
       ]}
     />
+    </>
   );
 }

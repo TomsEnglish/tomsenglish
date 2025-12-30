@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://tomsenglish.com
+
+# Sitemaps
+Sitemap: https://tomsenglish.com/sitemap.xml

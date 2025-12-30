@@ -44,7 +44,7 @@ export default function RootLayout({
       >
         <BootstrapClient />
         <Header />
-        <PageTitle />
+        
         <main className="main">{children}</main>
         <Footer />
 

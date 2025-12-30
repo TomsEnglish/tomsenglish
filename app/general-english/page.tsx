@@ -1,7 +1,11 @@
 import { CourseTemplate } from "@/components/course-template-page";
+import { PageTitle } from "@/components/page-title";
 
 export default function GeneralEnglish() {
   return (
+    <>
+    <PageTitle />
+   
     <CourseTemplate
       title="English for Everyday Communication"
       subtitle="Personalized English classes to help you speak more fluently, confidently, and naturally."
@@ -37,5 +41,6 @@ export default function GeneralEnglish() {
         "Continuous feedback and correction",
       ]}
     />
+     </>
   );
 }

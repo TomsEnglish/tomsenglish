@@ -1,4 +1,5 @@
 import Form from "./form";
+import { PageTitle } from "@/components/page-title";
 
 const contactItems = [
   {
@@ -6,11 +7,11 @@ const contactItems = [
     title: "Email",
     value: "tom@tomsenglish.com",
   },
-  {
-    icon: "bi-whatsapp",
-    title: "WhatsApp",
-    value: "+1 (212) 555-7890",
-  },
+  // {
+  //   icon: "bi-whatsapp",
+  //   title: "WhatsApp",
+  //   value: "+1 (212) 555-7890",
+  // },
   {
     icon: "bi-clock",
     title: "Availability",
@@ -20,6 +21,9 @@ const contactItems = [
 
 export default function Contact() {
   return (
+    <>
+    <PageTitle />
+    
     <section id="contact" className="contact section">
       <div className="container" data-aos="fade-up">
         <div className="contact-main-wrapper">
@@ -56,5 +60,6 @@ export default function Contact() {
         </div>
       </div>
     </section>
+    </>
   );
 }

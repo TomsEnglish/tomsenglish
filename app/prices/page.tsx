@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePricingCurrency } from "@/hooks/usePricingCurrency";
+import { PageTitle } from "@/components/page-title";
 
 type BillingType = "hourly" | "bulk";
 
@@ -25,6 +26,9 @@ export default function Prices() {
   if (!ready) return null;
 
   return (
+    <>
+    <PageTitle />
+   
     <section id="pricing" className="pricing section">
       <div
         className="container pricing-toggle-container"
@@ -94,6 +98,7 @@ export default function Prices() {
         </p>
       </div>
     </section>
+     </>
   );
 }
 

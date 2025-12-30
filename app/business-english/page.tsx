@@ -1,7 +1,11 @@
 import { CourseTemplate } from "@/components/course-template-page";
+import { PageTitle } from "@/components/page-title";
 
 export default function BusinessEnglish() {
   return (
+    <>
+    <PageTitle />
+   
     <CourseTemplate
       title="Business English for Professionals"
       subtitle="Personalized English classes to help you communicate clearly and confidently in professional and international environments."
@@ -34,5 +38,6 @@ export default function BusinessEnglish() {
         "Continuous feedback and correction",
       ]}
     />
+     </>
   );
 }
