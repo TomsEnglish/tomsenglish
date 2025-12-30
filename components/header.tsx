@@ -6,36 +6,23 @@ import { usePathname } from "next/navigation";
 
 export const Header = () => {
   const pathname = usePathname();
-
   const [isMobileNavActive, setIsMobileNavActive] = useState(false);
 
-  // Optional: toggle a class on the body to match your old behavior
   useEffect(() => {
-    if (isMobileNavActive) {
-      document.body.classList.add("mobile-nav-active");
-    } else {
-      document.body.classList.remove("mobile-nav-active");
-    }
+    document.body.classList.toggle("mobile-nav-active", isMobileNavActive);
   }, [isMobileNavActive]);
 
-  const toggleMobileNav = () => {
-    setIsMobileNavActive((prev) => !prev);
-  };
-
-  const handleNavLinkClick = () => {
-    if (isMobileNavActive) {
-      setIsMobileNavActive(false);
-    }
+  const closeMobileNav = () => {
+    setIsMobileNavActive(false);
   };
 
   return (
     <header id="header" className="header d-flex align-items-center sticky-top">
-      <div className="container-fluid container-xl position-relative d-flex align-items-center">
+      <div className="container-fluid container-xl d-flex align-items-center">
         <Link href="/" className="logo d-flex align-items-center me-auto">
-          <h1 className="sitename">tomseng</h1>
+          <h1>Tom&apos;s English</h1>
         </Link>
 
-        {/* Nav Menu */}
         <nav
           id="navmenu"
           className={`navmenu ${isMobileNavActive ? "mobile-nav-active" : ""}`}
@@ -45,62 +32,104 @@ export const Header = () => {
               <Link
                 href="/"
                 className={pathname === "/" ? "active" : ""}
-                onClick={handleNavLinkClick}
+                onClick={closeMobileNav}
               >
                 Home
               </Link>
             </li>
+
+            <ServicesNav
+              pathname={pathname}
+              isMobileNavActive={isMobileNavActive}
+              onLinkClick={closeMobileNav}
+            />
+
             <li>
               <Link
-                href="/about"
-                className={pathname === "/about" ? "active" : ""}
-                onClick={handleNavLinkClick}
+                href="/prices"
+                className={pathname === "/prices" ? "active" : ""}
+                onClick={closeMobileNav}
               >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/pricing"
-                className={pathname === "/pricing" ? "active" : ""}
-                onClick={handleNavLinkClick}
-              >
-                Pricing
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/events"
-                className={pathname === "/events" ? "active" : ""}
-                onClick={handleNavLinkClick}
-              >
-                Events
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/blog"
-                className={pathname === "/blog" ? "active" : ""}
-                onClick={handleNavLinkClick}
-              >
-                Blog
+                Prices
               </Link>
             </li>
           </ul>
 
-          {/* Mobile toggle button */}
-          <i
+          <button
+            type="button"
             className={`mobile-nav-toggle d-xl-none bi ${
               isMobileNavActive ? "bi-x" : "bi-list"
             }`}
-            onClick={toggleMobileNav}
+            aria-label="Toggle navigation"
+            onClick={() => setIsMobileNavActive((prev) => !prev)}
           />
         </nav>
 
-        <Link href="/enroll" className="btn-getstarted">
-          Enroll Now
+        <Link href="/contact" className="btn-getstarted">
+          Contact me
         </Link>
       </div>
     </header>
+  );
+};
+
+const SERVICES = [
+  { href: "/general-english", label: "General English" },
+  { href: "/business-english", label: "Business English" },
+  { href: "/international-exam-prep", label: "International Exam Prep" },
+];
+
+type ServicesNavProps = {
+  pathname: string;
+  isMobileNavActive: boolean;
+  onLinkClick: () => void;
+};
+
+const ServicesNav = ({
+  pathname,
+  isMobileNavActive,
+  onLinkClick,
+}: ServicesNavProps) => {
+  // MOBILE: flatten services into the main list
+  if (isMobileNavActive) {
+    return (
+      <>
+        {SERVICES.map((service) => (
+          <li key={service.href}>
+            <Link
+              href={service.href}
+              className={pathname === service.href ? "active" : ""}
+              onClick={onLinkClick}
+            >
+              {service.label}
+            </Link>
+          </li>
+        ))}
+      </>
+    );
+  }
+
+  // DESKTOP: dropdown
+  return (
+    <li className="dropdown">
+      <a href="#">
+        <span>Services</span>
+        <i className="bi bi-chevron-down toggle-dropdown" />
+      </a>
+
+      <ul>
+        {SERVICES.map((service) => (
+          <li key={service.href}>
+            <Link
+              href={service.href}
+              className={pathname === service.href ? "active" : ""}
+              onClick={onLinkClick}
+            >
+              {service.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </li>
   );
 };

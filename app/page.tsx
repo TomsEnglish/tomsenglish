@@ -1,13 +1,11 @@
-import { Hero } from "./hero";
-import { UpcomingEvents } from "./upcoming-events";
-import { Testimonials } from "./testimonials";
+import { Hero } from "@/components/hero";
+import { Testimonials } from "@/components/testimonials";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Hero />
-      <UpcomingEvents />
       <Testimonials />
-    </div>
+    </>
   );
 }
