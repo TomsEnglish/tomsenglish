@@ -18,19 +18,14 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 type SubmitState = "idle" | "sending" | "success" | "error";
 
-const WEB3FORM_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORM_KEY ??
-  (() => {
-    throw new Error("Missing NEXT_PUBLIC_WEB3FORM_KEY");
-  })();
-
-const HCAPTCHA_KEY =
-  process.env.NEXT_PUBLIC_HCAPTCHA_KEY ??
-  (() => {
-    throw new Error("Missing NEXT_PUBLIC_HCAPTCHA_KEY");
-  })();
-
 export default function Form() {
+  const WEB3FORM_KEY = process.env.NEXT_PUBLIC_WEB3FORM_KEY;
+  const HCAPTCHA_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_KEY;
+
+   if (!WEB3FORM_KEY || !HCAPTCHA_KEY) {
+    return null; // or a friendly fallback message
+  }
+
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
 
   const {
