@@ -31,7 +31,7 @@ export const Hero = () => {
           {/* Text */}
           <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div className="hero-text">
-              <h1>Speak English with confidence, naturally</h1>
+              <h1>Speak English with confidence</h1>
               <p>
                 Online English classes with a native, TEFL-certified teacher
                 from the United States.
