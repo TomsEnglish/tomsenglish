@@ -1,132 +1,66 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { usePricingCurrency } from "@/hooks/usePricingCurrency";
 import { PageTitle } from "@/components/page-title";
 
-type BillingType = "hourly" | "bulk";
-
 const PRICES_USD = {
-  general: 12,
+  general: 10,
   business: 15,
-  exam: 17,
+  exam: 20,
 };
 
-const DISCOUNT_RATE = 0.2;
-
-const applyDiscount = (price: number) =>
-  Math.round(price * (1 - DISCOUNT_RATE));
-
 export default function Prices() {
-  const [billingType, setBillingType] = useState<BillingType>("hourly");
-
-  const { priceFromUSD, currency, ready } = usePricingCurrency();
-
-  if (!ready) return null;
-
   return (
     <>
-    <PageTitle />
-   
-    <section id="pricing" className="pricing section">
-      <div
-        className="container pricing-toggle-container"
-        data-aos="fade-up"
-        data-aos-delay="100"
-        data-aos-once="true"
-      >
-        {/* Toggle */}
-        <div className="pricing-toggle d-flex align-items-center justify-content-center text-center mb-3">
-          <span className={billingType === "hourly" ? "active" : ""}>
-            Flexible
-          </span>
+      <PageTitle />
 
-          <div className="form-check form-switch d-inline-block mx-3">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              checked={billingType === "bulk"}
-              onChange={() =>
-                setBillingType(billingType === "hourly" ? "bulk" : "hourly")
-              }
+      <section id="pricing" className="pricing section">
+        <div
+          className="container pricing-toggle-container"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          data-aos-once="true"
+        >
+          {/* Cards */}
+          <div className="pricing-row">
+            <Card
+              category="General English"
+              description="Everyday English, grammar, and vocabulary."
+              price={PRICES_USD.general}
+              delay={100}
+            />
+            <Card
+              category="Business English"
+              description="Corporate vocabulary, emails, and interview prep."
+              price={PRICES_USD.business}
+              popular
+              delay={200}
+            />
+            <Card
+              category="Exam Prep"
+              description="Intensive IELTS/TOEFL coaching and mock exams."
+              price={PRICES_USD.exam}
+              delay={300}
             />
           </div>
-
-          <span className={billingType === "bulk" ? "active w-fit whitespace-nowrap" : "w-fit whitespace-nowrap"}>
-            Best value <span className="badge">Save 20%</span>
-          </span>
         </div>
-
-        <div className="text-center mb-5">
-          <span>*Get the best value when you book 8 or more classes together</span>
-        </div>
-
-        {/* Cards */}
-        <div className="pricing-row">
-          <Card
-            category="General English"
-            description="Everyday English for confident communication"
-            basePrice={PRICES_USD.general}
-            billingType={billingType}
-            priceFromUSD={priceFromUSD}
-            delay={100}
-          />
-
-          <Card
-            category="Business English"
-            description="Professional English for work and meetings"
-            basePrice={PRICES_USD.business}
-            billingType={billingType}
-            priceFromUSD={priceFromUSD}
-            popular
-            delay={200}
-          />
-
-          <Card
-            category="International Exam Prep"
-            description="Structured preparation for international exams"
-            basePrice={PRICES_USD.exam}
-            billingType={billingType}
-            priceFromUSD={priceFromUSD}
-            delay={300}
-          />
-        </div>
-
-        <p className="text-center mt-4 text-muted">
-          Prices shown in {currency}
-        </p>
-      </div>
-    </section>
-     </>
+      </section>
+    </>
   );
 }
 
 type CardProps = {
   category: string;
   description: string;
-  basePrice: number;
-  billingType: BillingType;
-  priceFromUSD: (price: number) => string;
+  price: number;
   popular?: boolean;
   delay?: number;
 };
 
-const Card = ({
-  category,
-  description,
-  basePrice,
-  billingType,
-  priceFromUSD,
-  popular,
-  delay,
-}: CardProps) => {
-  const finalPrice =
-    billingType === "bulk" ? applyDiscount(basePrice) : basePrice;
-
+const Card = ({ category, description, price, popular, delay }: CardProps) => {
   return (
     <div
-      className="w-min"
+      className="w-fit"
       data-aos="fade-up"
       data-aos-delay={delay}
       data-aos-once="true"
@@ -139,12 +73,12 @@ const Card = ({
 
           <div className="price-wrap">
             <div className="price">
-              <span className="amount">{priceFromUSD(finalPrice)}</span>
+              <span className="amount">${price} USD</span>
               <span className="unit">/hour</span>
             </div>
           </div>
 
-          {/* <p className="pricing-description">{description}</p> */}
+          <p className="pricing-description">{description}</p>
         </div>
 
         <div className="pricing-cta">

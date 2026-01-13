@@ -6342,12 +6342,13 @@ section,
 }
 
 .pricing .pricing-item {
+  flex: 1;
   background-color: var(--surface-color);
   border-radius: 0.75rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   padding: 2rem;
-  height: 100%;
-  width: min-content;
+  height: min-content;
+  width: 320px;
   transition: all 0.3s ease;
   position: relative;
   display: flex;
@@ -6420,6 +6421,7 @@ section,
   font-size: 0.875rem;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   margin-bottom: 0;
+  width: fit-content;
 }
 
 .pricing .pricing-item.yearly-active .pricing-header .price-wrap .monthly {
@@ -6449,7 +6451,7 @@ section,
 }
 
 .pricing .pricing-features {
-  flex-grow: 1;
+  flex-grow: 0;
 }
 
 .pricing .pricing-features h6 {
