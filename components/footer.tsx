@@ -13,7 +13,7 @@ export const Footer = () => {
             </Link>
 
             <p>
-              © <span>Copyright Tom's English 2025 All Rights Reserved</span>
+              © <span>Copyright Tom's English 2026 All Rights Reserved</span>
             </p>
             {/* <p>
               Cras fermentum odio eu feugiat lide par naso tierra. Justo eget
