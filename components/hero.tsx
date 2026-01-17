@@ -27,9 +27,9 @@ export const Hero = () => {
       className="courses-hero section light-background"
     >
       <div className="container">
-        <div className="flex row align-items-center pointer-events-auto">
+        <div className="flex col align-items-center pointer-events-auto">
           {/* Text */}
-          <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div className="grow" data-aos="fade-up" data-aos-delay="100">
             <div className="hero-text">
               <h1>Speak English with confidence</h1>
               <p>
@@ -48,12 +48,12 @@ export const Hero = () => {
           </div>
 
           {/* Image + floating cards */}
-          <div className="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          <div className="" data-aos="fade-up" data-aos-delay="200">
             <div className="hero-image">
               <img
                 src="/hero.jpg"
                 alt="Online English classes"
-                className="img-fluid main-image"
+                className="main-image"
               />
 
               <div className="floating-cards">

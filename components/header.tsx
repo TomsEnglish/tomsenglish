@@ -19,7 +19,7 @@ export const Header = () => {
   return (
     <header id="header" className="header d-flex align-items-center sticky-top">
       <div className="container-fluid container-xl d-flex align-items-center">
-        <Link href="/" className="logo d-flex align-items-center me-auto">
+        <Link href="/" className="logo d-flex align-items-center">
           <h1>Tom&apos;s English</h1>
         </Link>
 
@@ -28,7 +28,7 @@ export const Header = () => {
           className={`navmenu ${isMobileNavActive ? "mobile-nav-active" : ""}`}
         >
           <ul>
-            <li>
+            {/* <li>
               <Link
                 href="/"
                 className={pathname === "/" ? "active" : ""}
@@ -36,9 +36,11 @@ export const Header = () => {
               >
                 Home
               </Link>
-            </li>
+            </li> */}
 
-            <ServicesNav
+            <NavDropdown
+              title="Services"
+              items={SERVICES}
               pathname={pathname}
               isMobileNavActive={isMobileNavActive}
               onLinkClick={closeMobileNav}
@@ -46,13 +48,21 @@ export const Header = () => {
 
             <li>
               <Link
-                href="/prices"
-                className={pathname === "/prices" ? "active" : ""}
+                href="/pricing"
+                className={pathname === "/pricing" ? "active" : ""}
                 onClick={closeMobileNav}
               >
-                Prices
+                Pricing
               </Link>
             </li>
+
+            <NavDropdown
+              title="Resources"
+              items={RESOURCES}
+              pathname={pathname}
+              isMobileNavActive={isMobileNavActive}
+              onLinkClick={closeMobileNav}
+            />
           </ul>
 
           <button
@@ -79,53 +89,59 @@ const SERVICES = [
   { href: "/international-exam-prep", label: "International Exam Prep" },
 ];
 
-type ServicesNavProps = {
+const RESOURCES = [{ href: "/phrasal-verbs", label: "Phrasal Verbs" }];
+
+type DropdownItem = {
+  href: string;
+  label: string;
+};
+
+type NavDropdownProps = {
+  title: string;
+  items: DropdownItem[];
   pathname: string;
   isMobileNavActive: boolean;
   onLinkClick: () => void;
 };
 
-const ServicesNav = ({
+const NavDropdown = ({
+  title,
+  items,
   pathname,
   isMobileNavActive,
   onLinkClick,
-}: ServicesNavProps) => {
-  // MOBILE: flatten services into the main list
-  if (isMobileNavActive) {
-    return (
-      <>
-        {SERVICES.map((service) => (
-          <li key={service.href}>
-            <Link
-              href={service.href}
-              className={pathname === service.href ? "active" : ""}
-              onClick={onLinkClick}
-            >
-              {service.label}
-            </Link>
-          </li>
-        ))}
-      </>
-    );
-  }
+}: NavDropdownProps) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  // DESKTOP: dropdown
+  // Helper to check if any child link is active
+  const isChildActive = items.some((item) => pathname === item.href);
+
   return (
-    <li className="dropdown">
-      <a href="#">
-        <span>Services</span>
+    <li className={`dropdown ${isOpen ? "active" : ""}`}>
+      <a
+        href="#"
+        className={isChildActive ? "active" : ""}
+        onClick={(e) => {
+          e.preventDefault();
+          if (isMobileNavActive) setIsOpen(!isOpen);
+        }}
+      >
+        <span>{title}</span>
         <i className="bi bi-chevron-down toggle-dropdown" />
       </a>
 
-      <ul>
-        {SERVICES.map((service) => (
-          <li key={service.href}>
+      <ul className={isMobileNavActive && !isOpen ? "d-none" : "d-block"}>
+        {items.map((item) => (
+          <li key={item.href}>
             <Link
-              href={service.href}
-              className={pathname === service.href ? "active" : ""}
-              onClick={onLinkClick}
+              href={item.href}
+              className={pathname === item.href ? "active" : ""}
+              onClick={() => {
+                setIsOpen(false);
+                onLinkClick();
+              }}
             >
-              {service.label}
+              {item.label}
             </Link>
           </li>
         ))}

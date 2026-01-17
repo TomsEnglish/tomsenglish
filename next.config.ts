@@ -1,7 +1,13 @@
+import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  experimental: {
+    staleTimes: {
+      dynamic: 30, // Cache dynamic routes in the browser for 30 seconds
+      static: 180, // Cache static routes for 3 minutes
+    },
+  },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);
