@@ -4,7 +4,6 @@ import { UseAOS } from "@/hooks/UseAOS";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ScrollTop } from "@/components/scroll-top";
-import { PageTitle } from "@/components/page-title";
 import BootstrapClient from "@/client/BootstrapClient.js";
 
 import "bootstrap/dist/css/bootstrap.css";

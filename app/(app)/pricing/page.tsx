@@ -9,7 +9,7 @@ const PRICES_USD = {
   exam: 20,
 };
 
-export default function Prices() {
+export default function Pricing() {
   return (
     <>
       <PageTitle />
