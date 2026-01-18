@@ -3,23 +3,23 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const COURSES = [
-  {
-    title: "General English",
-    icon: "bi-chat-text",
-    delay: 300,
-  },
-  {
-    title: "Business English",
-    icon: "bi-briefcase",
-    delay: 400,
-  },
-  {
-    title: "International Exam Prep",
-    icon: "bi-pencil-square",
-    delay: 500,
-  },
-];
+// const COURSES = [
+//   {
+//     title: "General English",
+//     icon: "bi-chat-text",
+//     delay: 300,
+//   },
+//   {
+//     title: "Business English",
+//     icon: "bi-briefcase",
+//     delay: 400,
+//   },
+//   {
+//     title: "International Exam Prep",
+//     icon: "bi-pencil-square",
+//     delay: 500,
+//   },
+// ];
 
 export const Hero = () => {
   return (
