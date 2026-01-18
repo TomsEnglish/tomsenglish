@@ -1,10 +1,10 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { useState } from "react";
 import useWeb3Forms from "@web3forms/react";
 
 const formSchema = z.object({
@@ -19,14 +19,11 @@ type FormValues = z.infer<typeof formSchema>;
 type SubmitState = "idle" | "sending" | "success" | "error";
 
 export default function Form() {
-  const WEB3FORM_KEY = process.env.NEXT_PUBLIC_WEB3FORM_KEY;
-  const HCAPTCHA_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_KEY;
-
-   if (!WEB3FORM_KEY || !HCAPTCHA_KEY) {
-    return null; // or a friendly fallback message
-  }
-
+  // 1. All Hooks MUST be at the very top
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  
+  const WEB3FORM_KEY = process.env.NEXT_PUBLIC_WEB3FORM_KEY || "";
+  const HCAPTCHA_KEY = process.env.NEXT_PUBLIC_HCAPTCHA_KEY || "";
 
   const {
     register,
@@ -53,14 +50,19 @@ export default function Form() {
     },
   });
 
-  const onSubmit = async (data: FormValues) => {
-    setSubmitState("sending");
-    await submit(data);
-  };
+  // 2. Now you can handle early returns for missing keys or success states
+  if (!WEB3FORM_KEY || !HCAPTCHA_KEY) {
+    return <p>Config error: Missing API keys.</p>;
+  }
 
   if (submitState === "success") {
     return <SuccessMessage />;
   }
+
+  const onSubmit = async (data: FormValues) => {
+    setSubmitState("sending");
+    await submit(data);
+  };
 
   return (
     <>
@@ -143,7 +145,7 @@ const ContactInstructions = () => {
     <div>
       <h3>Get in Touch</h3>
       <p>
-        Have a question or want to start learning? Send me a message and I'll
+        Have a question or want to start learning? Send me a message and I&apos;ll
         get back to you as soon as possible.
       </p>
     </div>
@@ -157,7 +159,7 @@ const SuccessMessage = () => {
       <p>
         Your message has been sent successfully.
         <br />
-        I'll get back to you within 24 hours.
+        I&apos;ll get back to you within 24 hours.
       </p>
     </div>
   );

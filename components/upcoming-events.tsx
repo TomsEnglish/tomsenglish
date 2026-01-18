@@ -1,4 +1,14 @@
 import Link from "next/link";
+import React from "react";
+
+// 1. Define an interface for the EventCard props
+interface EventCardProps {
+  day: number;
+  month: string;
+  title: string;
+  time: string;
+  fadeDelay: number;
+}
 
 export const UpcomingEvents = () => {
   return (
@@ -10,8 +20,8 @@ export const UpcomingEvents = () => {
       >
         <h2>Upcoming Events</h2>
         <p>
-          Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-          consectetur velit
+          Join our upcoming workshops and practice sessions to improve your
+          English skills.
         </p>
       </div>
 
@@ -36,30 +46,30 @@ export const UpcomingEvents = () => {
               fadeDelay={300}
             />
             <EventCard
-              day={18}
+              day={19}
               month="Dec"
-              title="English Speaking Workshop"
-              time="7:00 PM UTC-3"
-              fadeDelay={300}
+              title="Grammar Essentials"
+              time="6:00 PM UTC-3"
+              fadeDelay={350}
             />
             <EventCard
-              day={18}
+              day={20}
               month="Dec"
-              title="English Speaking Workshop"
+              title="Business English Pro"
               time="7:00 PM UTC-3"
               fadeDelay={400}
             />
             <EventCard
-              day={18}
+              day={21}
               month="Dec"
-              title="English Speaking Workshop"
+              title="IELTS Strategy Session"
               time="7:00 PM UTC-3"
-              fadeDelay={400}
+              fadeDelay={450}
             />
           </div>
         </div>
         <Link
-          href="courses.html"
+          href="/events" // Updated from courses.html to a Next.js route
           className="btn-more"
           data-aos="fade-up"
           data-aos-delay="200"
@@ -72,10 +82,11 @@ export const UpcomingEvents = () => {
   );
 };
 
-const EventCard = ({ day, month, title, time, fadeDelay }: any) => {
+// 2. Apply the interface to the component
+const EventCard = ({ day, month, title, time, fadeDelay }: EventCardProps) => {
   return (
     <Link
-      href=""
+      href="#"
       className="contact-card"
       data-aos="fade-up"
       data-aos-delay={fadeDelay}

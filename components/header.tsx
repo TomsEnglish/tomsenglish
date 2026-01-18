@@ -18,7 +18,7 @@ export const Header = () => {
 
   return (
     <header id="header" className="header d-flex align-items-center sticky-top">
-      <div className="container-fluid container-xl d-flex align-items-center">
+      <div className="container-fluid container d-flex align-items-center">
         <Link href="/" className="logo d-flex align-items-center">
           <h1>Tom&apos;s English</h1>
         </Link>

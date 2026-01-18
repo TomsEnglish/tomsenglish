@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export const PageTitle = ({ forceTitle }: { forceTitle?: string }) => {
   const pathname = usePathname();
@@ -20,7 +21,7 @@ export const PageTitle = ({ forceTitle }: { forceTitle?: string }) => {
           <nav className="breadcrumbs">
             <ol>
               <li>
-                <a href="/">Home</a>
+                <Link href="/">Home</Link>
               </li>
               <li className="current">{title}</li>
             </ol>

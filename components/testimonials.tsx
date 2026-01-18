@@ -1,3 +1,17 @@
+import React from 'react';
+
+// 1. Define interfaces to replace 'any'
+interface CardProps {
+  rating: number;
+  quote: string;
+  student: string;
+  location: string;
+}
+
+interface StarRatingProps {
+  rating: number;
+}
+
 export const Testimonials = () => {
   return (
     <section id="testimonials" className="testimonials section">
@@ -39,7 +53,7 @@ export const Testimonials = () => {
                 />
                 <Card
                   rating={5}
-                  quote="The classes feel like real conversations, which is great for me. I've learned how to actually use English in daily situations."
+                  quote="The classes feel like real conversations, which is great for me. I&apos;ve learned how to actually use English in daily situations."
                   student="Diego"
                   location="São Paulo, Brazil"
                 />
@@ -52,11 +66,12 @@ export const Testimonials = () => {
   );
 };
 
-const Card = ({ rating, quote, student, location }: any) => {
+const Card = ({ rating, quote, student, location }: CardProps) => {
   return (
     <div className="col-md-4">
       <div className="critic-review">
-        <div className="review-quote">"</div>
+        {/* Fixed unescaped quote by using an entity */}
+        <div className="review-quote">&quot;</div> 
         <StarRating rating={rating} />
         <p>{quote}</p>
         <div className="critic-info">
@@ -68,7 +83,7 @@ const Card = ({ rating, quote, student, location }: any) => {
   );
 };
 
-const StarRating = ({ rating }: any) => {
+const StarRating = ({ rating }: StarRatingProps) => {
   const totalStars = 5;
 
   const fullStars = Math.floor(rating);

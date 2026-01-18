@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export const Footer = () => {
   return (
@@ -9,11 +8,11 @@ export const Footer = () => {
           <div className="col-lg-5 col-md-12 footer-about">
             <Link href="/" className="logo d-flex align-items-center">
                {/* <Image src="/tomseng.png" alt={""} width={126} height={36} /> */}
-                <span>Tom's English</span>
+                <span>Tom&apos;s English</span>
             </Link>
 
             <p>
-              © <span>Copyright Tom's English 2026 All Rights Reserved</span>
+              © <span>Copyright Tom&apos;s English 2026 All Rights Reserved</span>
             </p>
             {/* <p>
               Cras fermentum odio eu feugiat lide par naso tierra. Justo eget

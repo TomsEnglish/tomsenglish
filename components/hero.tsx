@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const COURSES = [
   {
@@ -22,18 +23,15 @@ const COURSES = [
 
 export const Hero = () => {
   return (
-    <section
-
-      className="courses-hero section light-background"
-    >
+    <section className="courses-hero section light-background">
       <div className="container">
         <div className="flex col align-items-center pointer-events-auto">
           {/* Text */}
           <div className="grow" data-aos="fade-up" data-aos-delay="100">
             <div className="hero-text">
-              <h1>Speak English with confidence</h1>
+              <h1>Speak English <br/> with confidence</h1>
               <p>
-                Online English classes with a native, TEFL-certified teacher
+                Online English classes with a native, <br/> TEFL-certified teacher
                 from the United States.
               </p>
 
@@ -50,13 +48,16 @@ export const Hero = () => {
           {/* Image + floating cards */}
           <div className="" data-aos="fade-up" data-aos-delay="200">
             <div className="hero-image">
-              <img
+              <Image
                 src="/hero.jpg"
-                alt="Online English classes"
+                alt="Tom teaching English"
+                width={380} // Add appropriate width
+                height={380} // Add appropriate height
+                priority
                 className="main-image"
               />
 
-              <div className="floating-cards">
+              {/* <div className="floating-cards">
                 {COURSES.map(({ title, icon, delay }) => (
                   <div
                     key={title}
@@ -72,7 +73,7 @@ export const Hero = () => {
                     </div>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

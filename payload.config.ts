@@ -33,6 +33,7 @@ export default buildConfig({
       password: process.env.DB_PASSWORD,
       database: 'payload_db',
     },
+    push: true, // temp fix
   }),
   sharp,
   plugins: [],
